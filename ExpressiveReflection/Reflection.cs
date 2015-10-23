@@ -1,0 +1,86 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Linq.Expressions;
+using System.Reflection;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace ExpressiveReflection
+{
+    public static class Reflection
+    {
+        private static readonly ConstructorReflection _constructor = new ConstructorReflection();
+        private static readonly MemberReflection _member = new MemberReflection();
+        private static readonly MethodReflection _method = new MethodReflection();
+        private static readonly TypeReflection _type = new TypeReflection();
+        private static readonly APIEquivalenceComparison _APIComparison = new APIEquivalenceComparison();
+
+        public static ConstructorInfo GetConstructor<T>(Expression<Func<T>> constructorExpression)
+        {
+            return _constructor.From(constructorExpression);
+        }
+        public static MemberInfo GetMember<T>(Expression<Func<T>> memberExpression)
+        {
+            return _member.From(memberExpression);
+        }
+
+        public static MethodInfo GetMethod<T>(Expression<Func<T>> methodExpression)
+        {
+            return _method.From(methodExpression);
+        }
+        public static Type GetType<T>(Expression<Func<T>> typeExpression)
+        {
+            return _type.From(typeExpression);
+        }
+        public static Type GetType(MemberInfo member)
+        {
+            return _type.From(member);
+        }
+
+
+        public static bool IsNullableType(Type type)
+        {
+            return _type.IsNullableType(type);
+        }
+
+        public static bool IsNullAssignable(Type type)
+        {
+            return _type.IsNullableType(type);
+        }
+
+        public static Type MadeNonNullable(Type type)
+        {
+            return _type.MadeNonNullable(type);
+        }
+
+        public static Type MadeNullAssignable(Type type)
+        {
+            return _type.MadeNullAssignable(type);
+        }
+
+        public static object GetDefaultValue(Type type)
+        {
+           return _type.GetDefaultValue(type);
+        }
+
+        public static bool IsInteger(Type type)
+        {
+            return _type.IsInteger(type);
+        }
+
+        public static bool IsDecimal(Type type)
+        {
+            return _type.IsDecimal(type);
+        }
+        public static bool IsReadOnly(MemberInfo member)
+        {
+            return _member.IsReadOnly(member);
+        }
+
+        public static bool IsAPIEquivalent(MemberInfo left, MemberInfo right)
+        {
+            return _APIComparison.Matches(left, right);
+        }
+    }
+}

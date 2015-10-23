@@ -1,0 +1,19 @@
+<?xml version="1.0"?>
+<package >
+  <metadata>
+    <id>ExpressiveReflection</id>
+    <version>1.0.0</version>
+    <authors>hannasm</authors>
+    <owners>hannasm</owners>
+	<licenseUrl>https://github.com/hannasm/ExpressiveReflectionDotnet/blob/master/LICENSE</licenseUrl>
+    <projectUrl>https://github.com/hannasm/ExpressiveReflectionDotnet</projectUrl>
+    <requireLicenseAcceptance>false</requireLicenseAcceptance>
+    <description>Tools to simplify coding with the .NET reflection APIs.</description>
+    <releaseNotes>This is the initial release.</releaseNotes>
+    <copyright>Copyright 2015</copyright>
+  </metadata>
+  <files>
+    <file src="..\readme.md" target="" />
+  </files>
+</package>
+<!-- vim: set expandtab ts=2 sw=2:  -->
