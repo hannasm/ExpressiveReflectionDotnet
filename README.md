@@ -1,5 +1,9 @@
 # Versioning
-This is version 1.0.0 of the expressive reflection library.
+This is version 1.0.1 of the expressive reflection library.
+
+This package is available on github at: https://www.nuget.org/packages/ExpressiveReflection/1.0.1
+
+This is the initial release of this package
 
 # ExpressiveReflectionDotnet
 This is a .NET library for simplifying reflection / metadata programming and making 

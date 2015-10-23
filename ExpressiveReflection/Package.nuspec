@@ -2,7 +2,7 @@
 <package >
   <metadata>
     <id>ExpressiveReflection</id>
-    <version>1.0.0</version>
+    <version>1.0.1</version>
     <authors>hannasm</authors>
     <owners>hannasm</owners>
 	<licenseUrl>https://github.com/hannasm/ExpressiveReflectionDotnet/blob/master/LICENSE</licenseUrl>
