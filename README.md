@@ -1,9 +1,7 @@
 # Versioning
-This is version 1.0.1 of the expressive reflection library.
+This is version 1.1.0 of the expressive reflection library.
 
-This package is available on github at: https://www.nuget.org/packages/ExpressiveReflection/1.0.1
-
-This is the initial release of this package
+This package is available on github at: https://www.nuget.org/packages/ExpressiveReflection/1.1.0
 
 # ExpressiveReflectionDotnet
 This is a .NET library for simplifying reflection / metadata programming and making 
@@ -24,24 +22,32 @@ Let's take a look at some simple examples of how to do reflection using expressi
 ```C# 
 using ExpressiveReflection;
 
-Reflection.GetMember(()=>default(string).Length);
+Reflection.GetMember(()=>default(string).Length); // returns PropertyInfo for string.Length
 ```
 
 #### Lookup a method of the string class
 ```C#
 using ExpressiveReflection;
 
-Reflection.GetMethod(()=>default(string).Substring(default(int), default(int));
+Reflection.GetMethod(()=>default(string).Substring(default(int), default(int)); // returns MethodInfo for string.Substring(int,int) 
 ```
 
 #### Lookup the constructor to create a decimal from long
 ```C#
 using ExpressiveReflection;
 
-Reflection.GetConstructor(()=>new decimal(default(long)));
+Reflection.GetConstructor(()=>new decimal(default(long))); // returns constructorInfo for new decimal(string)
 ```
 
 The ExpressiveReflection.Reflection class exposes all of the reflection methods from a single central location.
 
 # Tests
 There is a fairly comprehensive set of unit tests, and additionald examples demonstrating functionality can be found there.
+
+# Changelog 
+
+## 1.1.0
+Add Reflection.GetMemberName() / Reflection.GetMethodName() / Reflection.GetTypeName()
+
+## 1.0.1
+Initial release

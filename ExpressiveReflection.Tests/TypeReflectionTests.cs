@@ -595,5 +595,23 @@ namespace ExpressiveReflection.Tests
 
             Assert.AreEqual(typeof(string), result);
         }
+
+        [TestMethod]
+        public void Test090()
+        {
+            var type = new TypeReflection();
+            var result = type.NameOf(() => default(string));
+
+            Assert.AreEqual("System.String", result);
+        }
+
+        [TestMethod]
+        public void Test091()
+        {
+            var type = new TypeReflection();
+            var result = type.NameOf(() => default(int?));
+
+            Assert.AreEqual("System.Nullable`1[System.Int32]", result);
+        }
     }
 }

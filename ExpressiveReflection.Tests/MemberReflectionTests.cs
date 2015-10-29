@@ -161,5 +161,54 @@ namespace ExpressiveReflection.Tests
 
             Assert.IsTrue(result);
         }
+
+        [TestMethod]
+        public void Test013()
+        {
+            var member = new MemberReflection();
+            var result = member.NameOf(()=>default(string).Length);
+
+            Assert.AreEqual("Length", result);
+        }
+
+        [TestMethod]
+        public void Test014()
+        {
+            var member = new MemberReflection();
+            var result = member.NameOf(() => default(Version).MajorRevision);
+
+            Assert.AreEqual("MajorRevision", result);
+        }
+
+        class Dummy03 {
+            public int FieldOne;
+        }
+        [TestMethod]
+        public void Test015()
+        {
+            var member = new MemberReflection();
+            var result = member.NameOf(() => default(Dummy03).FieldOne);
+
+            Assert.AreEqual("FieldOne", result);
+        }
+
+
+        [TestMethod]
+        public void Test016()
+        {
+            var member = new MemberReflection();
+            var result = member.NameOf(() => default(Dummy01)[default(int)]);
+
+            Assert.AreEqual("Item", result);
+        }
+
+        [TestMethod]
+        public void Test017()
+        {
+            var member = new MemberReflection();
+            var result = member.NameOf(() => default(Dummy01)[default(string)]);
+
+            Assert.AreEqual("Item", result);
+        }
     }
 }

@@ -14,6 +14,16 @@ namespace ExpressiveReflection
         {
             return typeExpression.ReturnType;
         }
+        public string NameOf<T>(Expression<Func<T>> typeExpression)
+        {
+            var result = From(typeExpression);
+            
+            if (!(result is TypeInfo)) {
+                throw new InvalidExpressionException("Expected expression to have valid TypeInfo", typeExpression);
+            }
+
+            return result.ToString();
+        }
         public Type From(MemberInfo mi)
         {
             switch (mi.MemberType) {

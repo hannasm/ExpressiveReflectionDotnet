@@ -56,6 +56,11 @@ namespace ExpressiveReflection
             );
         }
 
+        public string NameOf<T>(Expression<Func<T>> memberExpression)
+        {
+            return From(memberExpression).Name;
+        }
+
         public bool IsReadOnly(MemberInfo member)
         {
             switch (member.MemberType)

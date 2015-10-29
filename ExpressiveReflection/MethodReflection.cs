@@ -36,5 +36,9 @@ namespace ExpressiveReflection
             );
         }
 
+        public string NameOf<T>(Expression<Func<T>> methodExpression)
+        {
+            return From(methodExpression).Name;
+        }
     }
 }

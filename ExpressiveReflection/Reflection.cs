@@ -24,15 +24,28 @@ namespace ExpressiveReflection
         {
             return _member.From(memberExpression);
         }
+        public static string GetMemberName<T>(Expression<Func<T>> memberExpression)
+        {
+            return _member.NameOf(memberExpression);
+        }
 
         public static MethodInfo GetMethod<T>(Expression<Func<T>> methodExpression)
         {
             return _method.From(methodExpression);
         }
+        public static string GetMethodName<T>(Expression<Func<T>> methodExpression)
+        {
+            return _method.NameOf(methodExpression);
+        }
         public static Type GetType<T>(Expression<Func<T>> typeExpression)
         {
             return _type.From(typeExpression);
         }
+        public static string GetTypeName<T>(Expression<Func<T>> typeExpression)
+        {
+            return _type.NameOf(typeExpression);
+        }
+
         public static Type GetType(MemberInfo member)
         {
             return _type.From(member);
