@@ -2,7 +2,7 @@
 This is version 1.2.0 of the expressive reflection library.
 
 This package is available from nuget at: https://www.nuget.org/packages/ExpressiveReflection/1.2.0
-The source for this release is available on github at: https://github.com/hannasm/ExpressiveReflection/releases/tag/1.2.0
+The source for this release is available on github at: https://github.com/hannasm/ExpressiveReflectionDotNet/releases/tag/1.2.0
 
 # ExpressiveReflectionDotnet
 This is a .NET library for simplifying reflection / metadata programming and making 
