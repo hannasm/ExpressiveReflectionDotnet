@@ -1,7 +1,8 @@
 # Versioning
-This is version 1.1.0 of the expressive reflection library.
+This is version 1.2.0 of the expressive reflection library.
 
-This package is available on github at: https://www.nuget.org/packages/ExpressiveReflection/1.1.0
+This package is available from nuget at: https://www.nuget.org/packages/ExpressiveReflection/1.2.0
+The source for this release is available on github at: https://github.com/hannasm/ExpressiveReflection/releases/tag/1.2.0
 
 # ExpressiveReflectionDotnet
 This is a .NET library for simplifying reflection / metadata programming and making 
@@ -45,6 +46,10 @@ The ExpressiveReflection.Reflection class exposes all of the reflection methods 
 There is a fairly comprehensive set of unit tests, and additionald examples demonstrating functionality can be found there.
 
 # Changelog 
+
+## 1.2.0 
+ * added getValue(MemberInfo) / setValue(MemberInfo) methods to MemberReflection
+ * add ExpressiveReflection.Extensions namespace and exposed most functionality as extension methods on their corresponding types
 
 ## 1.1.0
 Add Reflection.GetMemberName() / Reflection.GetMethodName() / Reflection.GetTypeName()

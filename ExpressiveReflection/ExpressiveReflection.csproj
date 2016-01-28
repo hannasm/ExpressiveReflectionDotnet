@@ -37,6 +37,7 @@
   <ItemGroup>
     <Compile Include="ConstructorReflection.cs" />
     <Compile Include="APIEquivalenceComparison.cs" />
+    <Compile Include="Extensions\ExpressiveReflectionExtensions.cs" />
     <Compile Include="InvalidExpressionException.cs" />
     <Compile Include="MemberReflection.cs" />
     <Compile Include="MethodReflection.cs" />
@@ -46,6 +47,7 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Package.nuspec" />
+    <None Include="publishNuget.bat" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

@@ -46,15 +46,17 @@ namespace ExpressiveReflection.Tests
         }
 
         public class Dummy01 {
+            private Dictionary<int, string> _dataOne = new Dictionary<int, string>();
+            private Dictionary<string, string> _dataTwo = new Dictionary<string, string>();
             public string this[int index]
             {
-                get { return default(string); }
-                set { }
+                get { return _dataOne[index]; }
+                set { _dataOne[index] = value; }
             }
             public string this[string index]
             {
-                get { return default(string); }
-                set { }
+                get { return _dataTwo[index]; }
+                set { _dataTwo[index] = value; }
             }
         }
 
@@ -101,11 +103,11 @@ namespace ExpressiveReflection.Tests
         }
 
         class Dummy02 {
-            public readonly string ReadonlyField;
-            public string ReadonlyProperty { get { return default(string); } }
+            public readonly string ReadonlyField = "REAODNLYFIELD";
+            public string ReadonlyProperty { get { return "READONLYPROPERTY"; } }
 
             public string MutableField;
-            public string MutableProperty { get { return default(string); } set { } }
+            public string MutableProperty { get; set; }
         }
 
         [TestMethod]
@@ -209,6 +211,145 @@ namespace ExpressiveReflection.Tests
             var result = member.NameOf(() => default(Dummy01)[default(string)]);
 
             Assert.AreEqual("Item", result);
+        }
+
+        [TestMethod]
+        public void Test018()
+        {
+            var member = new MemberReflection();
+            var mi = member.From(()=>default(Dummy02).MutableField);
+            var instance = new Dummy02 {
+                MutableField = "ABC",
+                MutableProperty = "DEF",
+            };
+
+            Assert.AreEqual(instance.MutableField, member.GetValue<string>(mi, instance));
+        }
+
+        [TestMethod]
+        public void Test019()
+        {
+            var member = new MemberReflection();
+            var mi = member.From(() => default(Dummy02).MutableProperty);
+            var instance = new Dummy02
+            {
+                MutableField = "ABC",
+                MutableProperty = "DEF",
+            };
+
+            Assert.AreEqual(instance.MutableProperty, member.GetValue<string>(mi, instance));
+        }
+
+        [TestMethod]
+        public void Test020()
+        {
+            var member = new MemberReflection();
+            var mi = member.From(() => default(Dummy02).ReadonlyField);
+            var instance = new Dummy02
+            {
+                MutableField = "ABC",
+                MutableProperty = "DEF",
+            };
+
+            Assert.AreEqual(instance.ReadonlyField, member.GetValue<string>(mi, instance));
+        }
+
+        [TestMethod]
+        public void Test021()
+        {
+            var member = new MemberReflection();
+            var mi = member.From(() => default(Dummy02).ReadonlyProperty);
+            var instance = new Dummy02
+            {
+                MutableField = "ABC",
+                MutableProperty = "DEF",
+            };
+
+            Assert.AreEqual(instance.ReadonlyProperty, member.GetValue<string>(mi, instance));
+        }
+
+        [TestMethod]
+        public void Test022()
+        {
+            var member = new MemberReflection();
+            var mi = member.From(() => default(Dummy02).MutableField);
+            var instance = new Dummy02
+            {
+                MutableField = "ABC",
+                MutableProperty = "DEF",
+            };
+
+            Assert.AreEqual(instance.MutableField, "ABC");
+            member.SetValue(mi, instance, "GHI");
+            Assert.AreEqual(instance.MutableField, "GHI");
+        }
+
+        [TestMethod]
+        public void Test023()
+        {
+            var member = new MemberReflection();
+            var mi = member.From(() => default(Dummy02).MutableProperty);
+            var instance = new Dummy02
+            {
+                MutableField = "ABC",
+                MutableProperty = "DEF",
+            };
+
+            Assert.AreEqual(instance.MutableProperty, "DEF");
+            member.SetValue(mi, instance, "GHI");
+            Assert.AreEqual(instance.MutableProperty, "GHI");
+        }
+
+
+        [TestMethod]
+        public void Test024()
+        {
+            var member = new MemberReflection();
+            var mi = member.From(() => default(Dummy01)[default(int)]);
+            var instance = new Dummy01();
+            instance[1] = "ABC";
+
+            Assert.AreEqual(member.GetValue(mi, instance, 1), "ABC");
+        }
+
+        [TestMethod]
+        public void Test025()
+        {
+            var member = new MemberReflection();
+            var mi = member.From(() => default(Dummy01)[default(string)]);
+            var instance = new Dummy01();
+            instance["DEF"] = "ABC";
+
+            Assert.AreEqual(member.GetValue(mi, instance, "DEF"), "ABC");
+        }
+        [TestMethod]
+        public void Test026()
+        {
+            var member = new MemberReflection();
+            var mi = member.From(() => default(Dummy01)[default(int)]);
+            var instance = new Dummy01();
+            instance[1] = "ABC";
+
+            Assert.AreEqual(instance[1], "ABC");
+
+            member.SetValue(mi, instance, "DEF", 1);
+
+            Assert.AreEqual(instance[1], "DEF");
+        }
+
+        [TestMethod]
+        public void Test027()
+        {
+            var member = new MemberReflection();
+            var mi = member.From(() => default(Dummy01)[default(string)]);
+            var instance = new Dummy01();
+            instance["DEF"] = "ABC";
+
+            Assert.AreEqual(instance["DEF"], "ABC");
+
+            member.SetValue(mi, instance, "GHI", "DEF");
+
+            Assert.AreEqual(instance["DEF"], "GHI");
         }
     }
 }

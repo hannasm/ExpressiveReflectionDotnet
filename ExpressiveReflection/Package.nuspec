@@ -2,7 +2,7 @@
 <package >
   <metadata>
     <id>ExpressiveReflection</id>
-    <version>1.1.0</version>
+    <version>1.2.0</version>
     <authors>hannasm</authors>
     <owners>hannasm</owners>
 	<licenseUrl>https://github.com/hannasm/ExpressiveReflectionDotnet/blob/master/LICENSE</licenseUrl>
@@ -10,7 +10,8 @@
     <requireLicenseAcceptance>false</requireLicenseAcceptance>
     <description>Tools to simplify coding with the .NET reflection APIs.</description>
     <releaseNotes>
-    * 1.1.0 - add new methods GetMemberName() / GetMethodName() / GetTypeName()
+      * 1.2.0 - added getValue(MemberInfo) / setValue(MemberInfo) methods to MemberReflection
+      * 1.2.0 - add ExpressiveReflection.Extensions namespace and exposed most functionality as extension methods on their corresponding types
     </releaseNotes>
     <copyright>Copyright 2015</copyright>
   </metadata>

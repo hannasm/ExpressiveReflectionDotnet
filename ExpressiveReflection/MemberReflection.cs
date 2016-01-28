@@ -74,5 +74,44 @@ namespace ExpressiveReflection
                     return true;
             }
         }
+
+        public T GetValue<T>(MemberInfo member, object instance, params object[] args)
+        {
+            return (T)GetValue(member, instance, args);
+        }
+        public object GetValue(MemberInfo member, object instance, params object[] args)
+        {
+            switch (member.MemberType)
+            {
+                case MemberTypes.Property:
+                    return ((PropertyInfo)member).GetValue(instance, args);
+                case MemberTypes.Field:
+                    return ((FieldInfo)member).GetValue(instance);
+                default:
+                    throw new InvalidOperationException();
+            }
+        }
+
+        public void SetValue<T>(MemberInfo member, object instance, T value, params object[] args)
+        {
+            SetValue(member, instance, (object)value, args);
+        }
+
+        public void SetValue(MemberInfo member, object instance, object value, params object[] args)
+        {
+            switch (member.MemberType)
+            {
+                case MemberTypes.Property:
+                    var pi = (PropertyInfo)member;
+                    pi.SetValue(instance, value, args);
+                    break;
+                case MemberTypes.Field:
+                    var fi = (FieldInfo)member;
+                    fi.SetValue(instance, value);
+                    break;
+                default:
+                    throw new InvalidOperationException();
+            }
+        }
     }
 }

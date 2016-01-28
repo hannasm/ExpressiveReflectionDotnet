@@ -95,5 +95,24 @@ namespace ExpressiveReflection
         {
             return _APIComparison.Matches(left, right);
         }
+
+        public static T GetValue<T>(MemberInfo member, object instance, params object[] args)
+        {
+            return _member.GetValue<T>(member, instance, args);
+        }
+        public static object GetValue(MemberInfo member, object instance, params object[] args)
+        {
+            return _member.GetValue(member, instance, args);
+        }
+
+        public static void SetValue<T>(MemberInfo member, object instance, T value, params object[] args)
+        {
+            _member.SetValue<T>(member, instance, value, args);
+        }
+
+        public static void SetValue(MemberInfo member, object instance, object value, params object[] args)
+        {
+            _member.SetValue(member, instance, value, args);
+        }
     }
 }
