@@ -8,7 +8,12 @@ using System.Threading.Tasks;
 
 namespace ExpressiveReflection.Extensions
 {
-    public static class ExpressiveReflectionExtensions
+#if EXPRESSIVE_REFLECTION_ASSEMBLY
+    public 
+#else
+    internal
+#endif
+    static class ExpressiveReflectionExtensions
     {
         public static Type GetMemberType(this MemberInfo member)
         {

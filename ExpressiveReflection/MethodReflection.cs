@@ -8,7 +8,12 @@ using System.Threading.Tasks;
 
 namespace ExpressiveReflection
 {
-    public class MethodReflection
+#if EXPRESSIVE_REFLECTION_ASSEMBLY
+    public 
+#else
+    internal
+#endif
+    class MethodReflection
     {
         public MethodInfo From<T>(Expression<Func<T>> methodExpression)
         {

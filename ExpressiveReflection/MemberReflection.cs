@@ -8,7 +8,12 @@ using System.Threading.Tasks;
 
 namespace ExpressiveReflection
 {
-    public class MemberReflection
+#if EXPRESSIVE_REFLECTION_ASSEMBLY
+    public 
+#else
+    internal
+#endif
+    class MemberReflection
     {
         /// <summary>
         /// Use expression tree to reflect property info from types 

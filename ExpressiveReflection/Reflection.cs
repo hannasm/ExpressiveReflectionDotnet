@@ -8,7 +8,12 @@ using System.Threading.Tasks;
 
 namespace ExpressiveReflection
 {
-    public static class Reflection
+#if EXPRESSIVE_REFLECTION_ASSEMBLY
+    public 
+#else
+    internal
+#endif
+    static class Reflection
     {
         private static readonly ConstructorReflection _constructor = new ConstructorReflection();
         private static readonly MemberReflection _member = new MemberReflection();

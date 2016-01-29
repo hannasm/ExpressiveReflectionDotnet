@@ -8,7 +8,12 @@ using System.Threading.Tasks;
 
 namespace ExpressiveReflection
 {
-    public class TypeReflection
+#if EXPRESSIVE_REFLECTION_ASSEMBLY
+    public 
+#else
+    internal
+#endif
+    class TypeReflection
     {
         public Type From<T>(Expression<Func<T>> typeExpression)
         {

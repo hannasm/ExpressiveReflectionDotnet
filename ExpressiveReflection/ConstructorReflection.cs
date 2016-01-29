@@ -8,7 +8,12 @@ using System.Threading.Tasks;
 
 namespace ExpressiveReflection
 {
-    public class ConstructorReflection
+#if EXPRESSIVE_REFLECTION_ASSEMBLY
+    public 
+#else
+    internal
+#endif
+    class ConstructorReflection
     {
         public ConstructorInfo From<T>(Expression<Func<T>> constructorExpression)
         {

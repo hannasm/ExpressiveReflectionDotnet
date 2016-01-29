@@ -11,7 +11,13 @@ namespace ExpressiveReflection
     /// Provides facility for testing whether two reflected properties are representing the same component of an API,
     /// regardless of whether they represent the exact same implementation
     /// </summary>
-    public class APIEquivalenceComparison
+
+#if EXPRESSIVE_REFLECTION_ASSEMBLY
+    public 
+#else
+    internal
+#endif
+    class APIEquivalenceComparison
     {
         public bool IsParentEquivalentToChild(MemberInfo parentMember, MemberInfo childMember)
         {

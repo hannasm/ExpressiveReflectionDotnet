@@ -7,7 +7,12 @@ using System.Threading.Tasks;
 
 namespace ExpressiveReflection
 {
-    public class InvalidExpressionException : Exception
+#if EXPRESSIVE_REFLECTION_ASSEMBLY
+    public 
+#else
+    internal
+#endif
+    class InvalidExpressionException : Exception
     {
         public InvalidExpressionException(string message, Expression expr, params Type[] options)
             : base(message +
