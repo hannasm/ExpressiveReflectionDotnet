@@ -7,6 +7,7 @@ nuget pack 'Package.nuspec' -Symbol -Prop Configuration=Release
 $data = [xml](Get-Content Package.nuspec);
 $version = $data.package.metadata.version;
 
+$data.package.metadata.description = 'This is a source only distribution of the ' + $data.package.metadata.id + ' library that can be embedded inside of other projects / libraries.';
 $data.package.metadata.id = $data.package.metadata.id + '.Sources';
 
 $project = [xml](Get-Content ExpressiveReflection.csproj)

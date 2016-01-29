@@ -4,6 +4,6 @@
 * Update Version Number in AssemblyInfo.cs
 * Update Version Number in Package.nuspec
 * update release notes in package.nuspec
-* run release build
-* run publishNuget.bat
+* run 'powershell GenerateNugetPackages.ps1' from a visual studio command prompt (nuget needs to be on the path too)
+* run 'powershell PublishNugetPackages.ps1' from a visual studio command prompt (nuget needs to be on the path and API key needs to be set)
 * create tag for release on github
