@@ -46,7 +46,6 @@
     <Compile Include="TypeReflection.cs" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="InstallSources.ps1" />
     <None Include="Package.nuspec" />
     <None Include="GenerateNugetPackages.ps1" />
     <None Include="PublishNugetPackages.ps1" />

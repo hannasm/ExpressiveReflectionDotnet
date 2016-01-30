@@ -2,7 +2,7 @@
 <package >
   <metadata>
     <id>ExpressiveReflection</id>
-    <version>1.2.2</version>
+    <version>1.2.3</version>
     <authors>hannasm</authors>
     <owners>hannasm</owners>
 	<licenseUrl>https://github.com/hannasm/ExpressiveReflectionDotnet/blob/master/LICENSE</licenseUrl>
@@ -10,6 +10,7 @@
     <requireLicenseAcceptance>false</requireLicenseAcceptance>
     <description>Tools to simplify coding with the .NET reflection APIs.</description>
     <releaseNotes>
+      * 1.2.3 - last attempt at packaging didn't work right when multiple projcets included the same package in the solution so rewrote it again to use .pp transformations
       * 1.2.2 - this is a large scale rewrite of the Sources distrbution, making this Sources package safer for use, however no new functionality was added otherwise
       * 1.2.1 - bumping the version to fix some minor things in the soruce package
       * 1.2.0 - added getValue(MemberInfo) / setValue(MemberInfo) methods to MemberReflection
