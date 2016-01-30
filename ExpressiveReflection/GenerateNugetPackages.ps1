@@ -26,6 +26,12 @@ foreach ($grp in $project.Project.ItemGroup) {
 	}
 }
 
+# add installSources.ps1 to the nuspec
+$file = $fileRef.Clone();
+$fileRef.src = 'InstallSources.ps1'
+$fileRef.target = 'tools\install.ps1';
+$data.package.files.AppendChild($file);
+
 $sourcesNuspec = 'ExpressiveReflection.Sources.nuspec';
 
 $data.OuterXml | Out-File -FilePath $sourcesNuspec -Force;

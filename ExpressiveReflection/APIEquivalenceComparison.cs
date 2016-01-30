@@ -1,9 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Reflection;
-using System.Text;
-using System.Threading.Tasks;
+﻿using global::System;
+using global::System.Collections.Generic;
+using global::System.Linq;
+using global::System.Reflection;
+using global::System.Text;
+using global::System.Threading.Tasks;
 
 namespace ExpressiveReflection
 {
@@ -13,9 +13,7 @@ namespace ExpressiveReflection
     /// </summary>
 
 #if EXPRESSIVE_REFLECTION_ASSEMBLY
-    public 
-#else
-    internal
+    public
 #endif
     class APIEquivalenceComparison
     {
