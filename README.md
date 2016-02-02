@@ -2,7 +2,9 @@
 This is version 1.2.4 of the expressive reflection library.
 
 This package is available from nuget at: https://www.nuget.org/packages/ExpressiveReflection/1.2.4
+
 This package is also available from nuget as an embeddable sources package at: https://www.nuget.org/packages/ExpressiveReflection.Sources/1.2.4
+
 The source for this release is available on github at: https://github.com/hannasm/ExpressiveReflectionDotNet/releases/tag/1.2.4
 
 # ExpressiveReflectionDotnet
