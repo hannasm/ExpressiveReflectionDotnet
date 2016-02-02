@@ -21,7 +21,7 @@ foreach ($grp in $project.Project.ItemGroup) {
 		
 		# annotate source files with a comment indicating package version, as well as wrapping all code inside the namespace and rename extension to .pp
 		$text = [System.IO.File]::ReadAllText($compile.Include);
-		$text = '// Nuget source distribution of ' + $data.package.metadata.id + '.' + $versionString + [Environment]::NewLine +
+		$text = '// Nuget source distribution of ' + $data.package.metadata.id + '.' + $version + [Environment]::NewLine +
 			    'namespace $rootnamespace$.lib {' + [Environment]::NewLine + '  ' +
 				$text.Replace(([Environment]::NewLine), ([Environment]::Newline + '  ')) +
 				'}';

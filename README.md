@@ -1,11 +1,11 @@
 # Versioning
-This is version 1.2.4 of the expressive reflection library.
+This is version 1.2.5 of the expressive reflection library.
 
-This package is available from nuget at: https://www.nuget.org/packages/ExpressiveReflection/1.2.4
+This package is available from nuget at: https://www.nuget.org/packages/ExpressiveReflection/1.2.5
 
-This package is also available from nuget as an embeddable sources package at: https://www.nuget.org/packages/ExpressiveReflection.Sources/1.2.4
+This package is also available from nuget as an embeddable sources package at: https://www.nuget.org/packages/ExpressiveReflection.Sources/1.2.5
 
-The source for this release is available on github at: https://github.com/hannasm/ExpressiveReflectionDotNet/releases/tag/1.2.4
+The source for this release is available on github at: https://github.com/hannasm/ExpressiveReflectionDotNet/releases/tag/1.2.5
 
 # ExpressiveReflectionDotnet
 This is a .NET library for simplifying reflection / metadata programming and making 
@@ -49,6 +49,9 @@ The ExpressiveReflection.Reflection class exposes all of the reflection methods 
 There is a fairly comprehensive set of unit tests, and additionald examples demonstrating functionality can be found there.
 
 # Changelog 
+## 1.2.5 
+  * fixing an issue with the comments produced in source distribution
+
 ## 1.2.4
   * after hitting some issues with filesystem path length limitations renaming the folder the Sources package installs to in the hopes of minimizing the filename slizes
 
