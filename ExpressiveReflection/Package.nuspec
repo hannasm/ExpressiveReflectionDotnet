@@ -2,7 +2,7 @@
 <package >
   <metadata>
     <id>ExpressiveReflection</id>
-    <version>1.2.5</version>
+    <version>1.2.6</version>
     <authors>hannasm</authors>
     <owners>hannasm</owners>
 	<licenseUrl>https://github.com/hannasm/ExpressiveReflectionDotnet/blob/master/LICENSE</licenseUrl>
@@ -10,6 +10,7 @@
     <requireLicenseAcceptance>false</requireLicenseAcceptance>
     <description>Tools to simplify coding with the .NET reflection APIs.</description>
     <releaseNotes>
+      * 1.2.6 - apparently the binary nuget package didn't have a dll in it
       * 1.2.5 - fixing an issue with the comments produced in source distribution
       * 1.2.4 - after hitting some issues with filesystem path length limitations renaming the folder the Sources package installs to in the hopes of minimizing the filename slizes
       * 1.2.3 - last attempt at packaging didn't work right when multiple projcets included the same package in the solution so rewrote it again to use .pp transformations
@@ -22,6 +23,9 @@
   </metadata>
   <files>
     <file src="..\readme.md" target="" />
+    <file src="bin\Release\*.dll" target="lib" />
+    <file src="bin\Release\*.pdb" target="lib" />
+    <file src="bin\Release\*.xml" target="lib" />
   </files>
 </package>
 <!-- vim: set expandtab ts=2 sw=2:  -->
