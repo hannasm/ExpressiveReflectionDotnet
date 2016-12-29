@@ -53,6 +53,7 @@
   </Choose>
   <ItemGroup>
     <Compile Include="APIEquivalenceComparisonTests.cs" />
+    <Compile Include="CollectionReflectionTests.cs" />
     <Compile Include="MemberReflectionTests.cs" />
     <Compile Include="MethodReflectionTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

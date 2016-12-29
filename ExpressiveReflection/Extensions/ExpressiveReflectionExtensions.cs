@@ -18,7 +18,6 @@ namespace ExpressiveReflection.Extensions
             return Reflection.GetType(member);
         }
 
-
         public static bool IsNullableType(this Type type)
         {
             return Reflection.IsNullableType(type);

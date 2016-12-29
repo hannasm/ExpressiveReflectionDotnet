@@ -39,7 +39,11 @@ foreach ($grp in $project.Project.ItemGroup) {
 
 $sourcesNuspec = 'ExpressiveReflection.Sources.nuspec';
 
-$data.OuterXml | Out-File -FilePath $sourcesNuspec -Force;
+$data2 = $data.Clone();
+$toRemove = $data2.package.files.file | where {$_.target -eq 'lib'};
+$toRemove | foreach { $data2.package.files.RemoveChild($_) };
+
+$data2.OuterXml | Out-File -FilePath $sourcesNuspec -Force;
 
 nuget pack $sourcesNuspec;
 

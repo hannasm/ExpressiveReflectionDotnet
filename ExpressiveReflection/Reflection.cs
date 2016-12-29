@@ -18,6 +18,7 @@ namespace ExpressiveReflection
         private static readonly MethodReflection _method = new MethodReflection();
         private static readonly TypeReflection _type = new TypeReflection();
         private static readonly APIEquivalenceComparison _APIComparison = new APIEquivalenceComparison();
+        static readonly CollectionReflection _collection = new CollectionReflection();
 
         public static ConstructorInfo GetConstructor<T>(Expression<Func<T>> constructorExpression)
         {
@@ -117,5 +118,10 @@ namespace ExpressiveReflection
         {
             _member.SetValue(member, instance, value, args);
         }
+
+
+        public static Type GetElementType(Type seqType) { return _collection.GetElementType(seqType); }
+        public static Type GetIEnumerableType(Type elementType) { return _collection.GetIEnumerableType(elementType); }
+        public static Type FindIEnumerable(Type seqType) { return _collection.FindIEnumerable(seqType); }
     }
 }

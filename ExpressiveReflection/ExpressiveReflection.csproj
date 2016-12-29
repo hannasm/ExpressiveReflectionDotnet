@@ -35,6 +35,7 @@
     <Reference Include="Microsoft.CSharp" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="CollectionReflection.cs" />
     <Compile Include="ConstructorReflection.cs" />
     <Compile Include="APIEquivalenceComparison.cs" />
     <Compile Include="Extensions\ExpressiveReflectionExtensions.cs" />
