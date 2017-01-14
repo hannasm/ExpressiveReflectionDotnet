@@ -13,26 +13,65 @@ namespace ExpressiveReflection
 #endif
     class MethodReflection
     {
+        /// <summary>
+        /// Convert a methodinfo from one generic type permutation to a different generic permutation. It is possible to change both the
+        /// generic permutations of the declaring type and of the method definition. If you don't desire to transmute the declaring type, specify
+        /// null for the typeArgsForType argument. You may only pass null for the typeArgsForMethod argument if the method is not generic.
+        /// </summary>
+        public MethodInfo Transmute(MethodInfo target, Type[] typeArgsForType, Type[] typeArgsForMethod)
+        {
+            var declaringType = target.DeclaringType;
+            if (target.IsGenericMethod && !target.IsGenericMethodDefinition)
+            {
+                target = target.GetGenericMethodDefinition();
+            }
+            var methodIndex = declaringType.GetMethods().Select((c, i) => new { c, i }).Where(d => d.c == target).Select(d => d.i).Single();
+            Type newType;
+            if (declaringType.IsGenericType && typeArgsForType != null && typeArgsForType.Length > 0)
+            {
+                newType = declaringType.GetGenericTypeDefinition().MakeGenericType(typeArgsForType);
+            }
+            else
+            {
+                newType = declaringType;
+            }
+            var newMethod = newType.GetMethods()[methodIndex];
+            if (newMethod.IsGenericMethodDefinition)
+            {
+                newMethod = newMethod.MakeGenericMethod(typeArgsForMethod);
+            }
+
+            return newMethod;
+        }
+
+        public MethodInfo From(Expression<Action> methodExpression)
+        {
+            return From(methodExpression.Body);
+        }
         public MethodInfo From<T>(Expression<Func<T>> methodExpression)
         {
-            var mthExpr = methodExpression.Body as MethodCallExpression;
+            return From(methodExpression.Body);
+        }
+        public MethodInfo From(Expression methodExpression)
+        {
+            var mthExpr = methodExpression as MethodCallExpression;
             if (mthExpr != null) {
                 return mthExpr.Method;
             }
             
-            var bexp = methodExpression.Body as BinaryExpression;
+            var bexp = methodExpression as BinaryExpression;
             if (bexp != null && bexp.Method != null) {
                 return bexp.Method;
             }
 
-            var uexp = methodExpression.Body as UnaryExpression;
+            var uexp = methodExpression as UnaryExpression;
             if (uexp != null && uexp.Method != null) {
                 return uexp.Method;
             }
 
             throw new InvalidExpressionException(
                 "method reflection",
-                methodExpression.Body,
+                methodExpression,
                 typeof(MethodCallExpression),
                 typeof(BinaryExpression),
                 typeof(UnaryExpression)
@@ -40,6 +79,14 @@ namespace ExpressiveReflection
         }
 
         public string NameOf<T>(Expression<Func<T>> methodExpression)
+        {
+            return From(methodExpression).Name;
+        }
+        public string NameOf(Expression<Action> methodExpression)
+        {
+            return From(methodExpression).Name;
+        }
+        public string NameOf(Expression methodExpression)
         {
             return From(methodExpression).Name;
         }

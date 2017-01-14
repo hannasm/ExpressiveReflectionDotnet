@@ -111,5 +111,39 @@ namespace ExpressiveReflection.Tests
 
             Assert.AreEqual(typeof(string[]).GetConstructor(new Type[] { typeof(int) }), result);
         }
+
+        class GenericConstructorTarget<T>
+        {
+            public GenericConstructorTarget(string someString, int someInt, T someT)
+            {
+            }
+            public GenericConstructorTarget(int someInt, string someString, T someT)
+            {
+            }
+        }
+        [TestMethod]
+        public void Test012()
+        {
+            var constructor = new ConstructorReflection();
+            var result = constructor.From(() => new GenericConstructorTarget<string>(default(string), default(int), default(string)));
+            result = constructor.Transmute(result, typeof(long));
+
+            var parm = result.GetParameters();
+            Assert.AreEqual(typeof(string), parm[0].ParameterType);
+            Assert.AreEqual(typeof(int), parm[1].ParameterType);
+            Assert.AreEqual(typeof(long), parm[2].ParameterType);
+        }
+        [TestMethod]
+        public void Test013()
+        {
+            var constructor = new ConstructorReflection();
+            var result = constructor.From(() => new GenericConstructorTarget<string>(default(int), default(string), default(string)));
+            result = constructor.Transmute(result, typeof(long));
+
+            var parm = result.GetParameters();
+            Assert.AreEqual(typeof(int), parm[0].ParameterType);
+            Assert.AreEqual(typeof(string), parm[1].ParameterType);
+            Assert.AreEqual(typeof(long), parm[2].ParameterType);
+        }
     }
 }

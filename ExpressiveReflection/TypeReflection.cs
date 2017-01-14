@@ -133,5 +133,22 @@ namespace ExpressiveReflection
                     return false;
             }
         }
+
+        /// <summary>
+        /// Convert a Type from one generic type permutation to a different generic permutation. If the 
+        /// type passed in is not a generic type, or no typeargs are specified, the same type as was
+        /// passed in will be returned.
+        /// </summary>
+        public Type Transmute(Type target, params Type[] newtypeArgs)
+        {
+            if (target.IsGenericType && newtypeArgs != null && newtypeArgs.Length > 0)
+            {
+                return target.GetGenericTypeDefinition().MakeGenericType(newtypeArgs);
+            }
+            else
+            {
+                return target;
+            }
+        }
     }
 }

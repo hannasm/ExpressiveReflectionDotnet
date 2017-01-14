@@ -24,6 +24,10 @@ namespace ExpressiveReflection
         {
             return _constructor.From(constructorExpression);
         }
+        public static ConstructorInfo Transmute(ConstructorInfo other, params Type[] newGenericArgs)
+        {
+            return _constructor.Transmute(other, newGenericArgs);
+        }
         public static MemberInfo GetMember<T>(Expression<Func<T>> memberExpression)
         {
             return _member.From(memberExpression);
@@ -33,13 +37,25 @@ namespace ExpressiveReflection
             return _member.NameOf(memberExpression);
         }
 
+        public static MethodInfo Transmute(MethodInfo other, Type[] typeArgsForType, Type[] typeArgsForMethod)
+        {
+            return _method.Transmute(other, typeArgsForType, typeArgsForMethod);
+        }
         public static MethodInfo GetMethod<T>(Expression<Func<T>> methodExpression)
+        {
+            return _method.From(methodExpression);
+        }
+        public static MethodInfo GetMethod(Expression<Action> methodExpression)
         {
             return _method.From(methodExpression);
         }
         public static string GetMethodName<T>(Expression<Func<T>> methodExpression)
         {
             return _method.NameOf(methodExpression);
+        }
+        public static Type Transmute(Type other, params Type[] newGenericArgs)
+        {
+            return _type.Transmute(other, newGenericArgs);
         }
         public static Type GetType<T>(Expression<Func<T>> typeExpression)
         {

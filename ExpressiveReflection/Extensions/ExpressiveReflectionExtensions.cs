@@ -80,5 +80,18 @@ namespace ExpressiveReflection.Extensions
         {
             Reflection.SetValue(member, instance, value, args);
         }
+
+        public static ConstructorInfo Transmute(this ConstructorInfo constructor, params Type[] newGenericArgs)
+        {
+            return Reflection.Transmute(constructor, newGenericArgs);
+        }
+        public static Type Transmute(this Type other, params Type[] newGenericArgs)
+        {
+            return Reflection.Transmute(other, newGenericArgs);
+        }
+        public static MethodInfo Transmute(this MethodInfo other, Type[] typeArgsForType, Type[] typeArgsForMethod)
+        {
+            return Reflection.Transmute(other, typeArgsForType, typeArgsForMethod);
+        }
     }
 }

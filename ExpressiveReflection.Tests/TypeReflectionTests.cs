@@ -613,5 +613,18 @@ namespace ExpressiveReflection.Tests
 
             Assert.AreEqual("System.Nullable`1[System.Int32]", result);
         }
+
+        [TestMethod]
+        public void Test100()
+        {
+            var type = new TypeReflection();
+            var result = type.From(() => default(List<string>));
+            var newResult = type.Transmute(result, typeof(double));
+
+            var typeToAssert = type.From(() => default(List<double>));
+
+            Assert.AreEqual(typeToAssert, newResult);
+
+        }
     }
 }
