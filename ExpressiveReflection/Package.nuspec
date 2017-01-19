@@ -2,7 +2,7 @@
 <package >
   <metadata>
     <id>ExpressiveReflection</id>
-    <version>1.3.0</version>
+    <version>1.3.1</version>
     <authors>hannasm</authors>
     <owners>hannasm</owners>
 	<licenseUrl>https://github.com/hannasm/ExpressiveReflectionDotnet/blob/master/LICENSE</licenseUrl>
@@ -10,6 +10,8 @@
     <requireLicenseAcceptance>false</requireLicenseAcceptance>
     <description>Tools to simplify coding with the .NET reflection APIs.</description>
     <releaseNotes>
+      * 1.3.1 - Fix for bug in MethodReflection.Transmute() leading to completely random method derivations being returned
+      * 1.3.1 - Fix for bug in ConstructorReflection.Transmute() leading to no transmute operation taking place
       * 1.3.0 - added Transmute() methods for Constructors / Methods / Types allowing quick change of generic type arguments
       * 1.3.0 - added a few new overloads to MethodReflection.From() to allow support for methods returning void
       * 1.2.7 - added collection reflection with helpers for coercing a type to / from IEnumerable
@@ -22,7 +24,7 @@
       * 1.2.0 - added getValue(MemberInfo) / setValue(MemberInfo) methods to MemberReflection
       * 1.2.0 - add ExpressiveReflection.Extensions namespace and exposed most functionality as extension methods on their corresponding types
     </releaseNotes>
-    <copyright>Copyright 2017</copyright>
+    <copyright>Copyright 2015-2017</copyright>
   </metadata>
   <files>
     <file src="..\readme.md" target="content\README_ExpressiveReflection.md" />

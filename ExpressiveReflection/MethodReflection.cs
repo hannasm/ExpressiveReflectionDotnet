@@ -25,7 +25,7 @@ namespace ExpressiveReflection
             {
                 target = target.GetGenericMethodDefinition();
             }
-            var methodIndex = declaringType.GetMethods().Select((c, i) => new { c, i }).Where(d => d.c == target).Select(d => d.i).Single();
+            
             Type newType;
             if (declaringType.IsGenericType && typeArgsForType != null && typeArgsForType.Length > 0)
             {
@@ -35,7 +35,8 @@ namespace ExpressiveReflection
             {
                 newType = declaringType;
             }
-            var newMethod = newType.GetMethods()[methodIndex];
+            
+            var newMethod = newType.GetMethods().Where(m => m.MetadataToken == target.MetadataToken).Single();
             if (newMethod.IsGenericMethodDefinition)
             {
                 newMethod = newMethod.MakeGenericMethod(typeArgsForMethod);

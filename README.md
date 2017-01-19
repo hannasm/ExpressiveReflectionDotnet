@@ -1,11 +1,11 @@
 # Versioning
-This is version 1.3.0 of the expressive reflection library.
+This is version 1.3.1 of the expressive reflection library.
 
-This package is available from nuget at: https://www.nuget.org/packages/ExpressiveReflection/1.3.0
+This package is available from nuget at: https://www.nuget.org/packages/ExpressiveReflection/1.3.1
 
-This package is also available from nuget as an embeddable sources package at: https://www.nuget.org/packages/ExpressiveReflection.Sources/1.3.0
+This package is also available from nuget as an embeddable sources package at: https://www.nuget.org/packages/ExpressiveReflection.Sources/1.3.1
 
-The source for this release is available on github at: https://github.com/hannasm/ExpressiveReflectionDotNet/releases/tag/1.3.0
+The source for this release is available on github at: https://github.com/hannasm/ExpressiveReflectionDotNet/releases/tag/1.3.1
 
 # ExpressiveReflectionDotnet
 This is a .NET library for simplifying reflection / metadata programming and making 
@@ -49,6 +49,10 @@ The ExpressiveReflection.Reflection class exposes all of the reflection methods 
 There is a fairly comprehensive set of unit tests, and additionald examples demonstrating functionality can be found there.
 
 # Changelog 
+## 1.3.1
+  * 1.3.1 - Fix for bug in MethodReflection.Transmute() leading to completely random method derivations being returned
+  * 1.3.1 - Fix for bug in ConstructorReflection.Transmute() leading to no transmute operation taking place
+
 ## 1.3.0
   * added Transmute() methods for Constructors / Methods / Types allowing quick change of generic type arguments
   * added a few new overloads to MethodReflection.From() to allow support for methods returning void

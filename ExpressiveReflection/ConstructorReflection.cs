@@ -17,10 +17,11 @@ namespace ExpressiveReflection
         {
             // you can't transmute a non-generic type's constructor because there are no generic arguments
             // to change
-            if (!other.DeclaringType.IsGenericParameter)
+            if (!other.DeclaringType.IsGenericType)
             {
                 return other;
             }
+
 
             var index = other.DeclaringType.GetConstructors().Select((c, i) => new { c, i }).Where(d => d.c == other).Select(d => d.i).Single();
             var type = other.DeclaringType.GetGenericTypeDefinition().MakeGenericType(newGenericArgs);
