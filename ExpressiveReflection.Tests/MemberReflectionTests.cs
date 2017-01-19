@@ -351,5 +351,54 @@ namespace ExpressiveReflection.Tests
 
             Assert.AreEqual(instance["DEF"], "GHI");
         }
+
+        class TransmuteTestClass001<T>
+        {
+            public T GenericField;
+            public T GenericProperty { get; set; }
+            public string StringFIeld;
+            public string StringProperty { get; set; }
+        }
+
+        [TestMethod]
+        public void Test030()
+        {
+            var member = new MemberReflection();
+            var mi = member.From(() => default(TransmuteTestClass001<int>).GenericField);
+            var newMi = member.Transmute(mi, typeof(Guid));
+            var expectedMi = member.From(() => default(TransmuteTestClass001<Guid>).GenericField);
+
+            Assert.AreEqual(expectedMi, newMi);
+        }
+        [TestMethod]
+        public void Test031()
+        {
+            var member = new MemberReflection();
+            var mi = member.From(() => default(TransmuteTestClass001<int>).GenericProperty);
+            var newMi = member.Transmute(mi, typeof(Guid));
+            var expectedMi = member.From(() => default(TransmuteTestClass001<Guid>).GenericProperty);
+
+            Assert.AreEqual(expectedMi, newMi);
+        }
+        [TestMethod]
+        public void Test032()
+        {
+            var member = new MemberReflection();
+            var mi = member.From(() => default(TransmuteTestClass001<int>).StringFIeld);
+            var newMi = member.Transmute(mi, typeof(Guid));
+            var expectedMi = member.From(() => default(TransmuteTestClass001<Guid>).StringFIeld);
+
+            Assert.AreEqual(expectedMi, newMi);
+        }
+        [TestMethod]
+        public void Test033()
+        {
+            var member = new MemberReflection();
+            var mi = member.From(() => default(TransmuteTestClass001<int>).StringProperty);
+            var newMi = member.Transmute(mi, typeof(Guid));
+            var expectedMi = member.From(() => default(TransmuteTestClass001<Guid>).StringProperty);
+
+            Assert.AreEqual(expectedMi, newMi);
+        }
     }
 }

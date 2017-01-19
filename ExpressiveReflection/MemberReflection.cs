@@ -14,6 +14,24 @@ namespace ExpressiveReflection
     class MemberReflection
     {
         /// <summary>
+        /// Convert a memberinfo from one generic type permutation to a different generic permutation. If you don't want to 
+        /// transmute the declaring type, specify null / do not specify the newGenericArgs.
+        /// </summary>
+        public MemberInfo Transmute(MemberInfo target, params Type[] newGenericArgs)
+        {
+            // you can't transmute a non-generic type's constructor because there are no generic arguments
+            // to change
+            if (!target.DeclaringType.IsGenericType || newGenericArgs == null || newGenericArgs.Length == 0)
+            {
+                return target;
+            }
+            
+            var type = target.DeclaringType.GetGenericTypeDefinition().MakeGenericType(newGenericArgs);
+            var transmuted = type.GetMembers().Where(m => m.MetadataToken == target.MetadataToken).Single();
+            return transmuted;
+        }
+
+        /// <summary>
         /// Use expression tree to reflect property info from types 
         /// </summary>
         /// <typeparam name="T"></typeparam>

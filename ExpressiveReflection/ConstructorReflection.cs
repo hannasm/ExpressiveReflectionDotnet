@@ -22,10 +22,9 @@ namespace ExpressiveReflection
                 return other;
             }
 
-
-            var index = other.DeclaringType.GetConstructors().Select((c, i) => new { c, i }).Where(d => d.c == other).Select(d => d.i).Single();
+            
             var type = other.DeclaringType.GetGenericTypeDefinition().MakeGenericType(newGenericArgs);
-            var transmuted = type.GetConstructors()[index];
+            var transmuted = type.GetConstructors().Where(c => c.MetadataToken == other.MetadataToken).Single();
             return transmuted;
         }
         

@@ -36,6 +36,10 @@ namespace ExpressiveReflection
         {
             return _member.NameOf(memberExpression);
         }
+        public static MemberInfo Transmute(MemberInfo member, params Type[] newGenericArgs)
+        {
+            return _member.Transmute(member, newGenericArgs);
+        }
 
         public static MethodInfo Transmute(MethodInfo other, Type[] typeArgsForType, Type[] typeArgsForMethod)
         {

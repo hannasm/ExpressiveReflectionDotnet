@@ -2,7 +2,7 @@
 <package >
   <metadata>
     <id>ExpressiveReflection</id>
-    <version>1.3.1</version>
+    <version>1.3.2</version>
     <authors>hannasm</authors>
     <owners>hannasm</owners>
 	<licenseUrl>https://github.com/hannasm/ExpressiveReflectionDotnet/blob/master/LICENSE</licenseUrl>
@@ -10,6 +10,8 @@
     <requireLicenseAcceptance>false</requireLicenseAcceptance>
     <description>Tools to simplify coding with the .NET reflection APIs.</description>
     <releaseNotes>
+      * 1.3.2 - Implemented a MemberReflection.Transmute() method to complement the other Transmute() offerings
+      * 1.3.2 - rewrite constructorReflection.Transmute() to use same MetadataToken trick that the MethodReflection.Transmtue() relies on
       * 1.3.1 - Fix for bug in MethodReflection.Transmute() leading to completely random method derivations being returned
       * 1.3.1 - Fix for bug in ConstructorReflection.Transmute() leading to no transmute operation taking place
       * 1.3.0 - added Transmute() methods for Constructors / Methods / Types allowing quick change of generic type arguments
