@@ -24,7 +24,7 @@ namespace ExpressiveReflection
 
             
             var type = other.DeclaringType.GetGenericTypeDefinition().MakeGenericType(newGenericArgs);
-            var transmuted = type.GetConstructors().Where(c => c.MetadataToken == other.MetadataToken).Single();
+            var transmuted = type.GetConstructors().Where(c => c.MetadataToken == other.MetadataToken && c.Module == other.Module).Single();
             return transmuted;
         }
         

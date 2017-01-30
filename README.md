@@ -1,11 +1,11 @@
 # Versioning
-This is version 1.3.2 of the expressive reflection library.
+This is version 1.3.3 of the expressive reflection library.
 
-This package is available from nuget at: https://www.nuget.org/packages/ExpressiveReflection/1.3.2
+This package is available from nuget at: https://www.nuget.org/packages/ExpressiveReflection/1.3.3
 
-This package is also available from nuget as an embeddable sources package at: https://www.nuget.org/packages/ExpressiveReflection.Sources/1.3.2
+This package is also available from nuget as an embeddable sources package at: https://www.nuget.org/packages/ExpressiveReflection.Sources/1.3.3
 
-The source for this release is available on github at: https://github.com/hannasm/ExpressiveReflectionDotNet/releases/tag/1.3.2
+The source for this release is available on github at: https://github.com/hannasm/ExpressiveReflectionDotNet/releases/tag/1.3.3
 
 # ExpressiveReflectionDotnet
 This is a .NET library for simplifying reflection / metadata programming and making 
@@ -49,6 +49,9 @@ The ExpressiveReflection.Reflection class exposes all of the reflection methods 
 There is a fairly comprehensive set of unit tests, and additionald examples demonstrating functionality can be found there.
 
 # Changelog 
+## 1.3.3
+  * 1.3.3 - Fix issues with Transmute(), where two separate members defined on the same type have the same metadata toekn, because the two members are declared in different modules and by chance they happened to overlap
+
 ## 1.3.2
   * 1.3.2 - Implemented a MemberReflection.Transmute() method to complement the other Transmute() offerings
   * 1.3.2 - rewrite constructorReflection.Transmute() to use same MetadataToken trick that the MethodReflection.Transmtue() relies on

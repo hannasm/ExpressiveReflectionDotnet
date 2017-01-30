@@ -36,7 +36,7 @@ namespace ExpressiveReflection
                 newType = declaringType;
             }
             
-            var newMethod = newType.GetMethods().Where(m => m.MetadataToken == target.MetadataToken).Single();
+            var newMethod = newType.GetMethods().Where(m => m.MetadataToken == target.MetadataToken && m.Module == target.Module).Single();
             if (newMethod.IsGenericMethodDefinition)
             {
                 newMethod = newMethod.MakeGenericMethod(typeArgsForMethod);
