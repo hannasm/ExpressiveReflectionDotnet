@@ -57,6 +57,17 @@ namespace ExpressiveReflection
         {
             return _method.NameOf(methodExpression);
         }
+        public static MethodInfo GetMethodExt(Type thisType, string name, params Type[] parameterTypes)
+        {
+            return _method.GetMethodExt(thisType, name, parameterTypes);
+        }
+        public static MethodInfo GetMethodExt(Type thisType, string name, BindingFlags bindingFlags, params Type[] parameterTypes)
+        {
+            return _method.GetMethodExt(thisType, name, bindingFlags, parameterTypes);
+        }
+        public static Type GenericT { get { return typeof(MethodReflection.T); } }
+        public static Type ArrayOfGenericT { get { return typeof(MethodReflection.T).MakeArrayType(1); } }
+
         public static Type Transmute(Type other, params Type[] newGenericArgs)
         {
             return _type.Transmute(other, newGenericArgs);

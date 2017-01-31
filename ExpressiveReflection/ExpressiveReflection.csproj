@@ -42,6 +42,7 @@
     <Compile Include="InvalidExpressionException.cs" />
     <Compile Include="MemberReflection.cs" />
     <Compile Include="MethodReflection.cs" />
+    <Compile Include="MethodReflection.GetMethodExt.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Reflection.cs" />
     <Compile Include="TypeReflection.cs" />

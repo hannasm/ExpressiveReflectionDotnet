@@ -97,5 +97,13 @@ namespace ExpressiveReflection.Extensions
         {
             return Reflection.Transmute(other, typeArgsForType, typeArgsForMethod);
         }
+        public static MethodInfo GetMethodExt(this Type thisType, string name, params Type[] parameterTypes)
+        {
+            return Reflection.GetMethodExt(thisType, name, parameterTypes);
+        }
+        public static MethodInfo GetMethodExt(this Type thisType, string name, BindingFlags bindingFlags, params Type[] parameterTypes)
+        {
+            return Reflection.GetMethodExt(thisType, name, bindingFlags, parameterTypes);
+        }
     }
 }

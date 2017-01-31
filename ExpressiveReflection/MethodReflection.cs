@@ -11,7 +11,7 @@ namespace ExpressiveReflection
 #if EXPRESSIVE_REFLECTION_ASSEMBLY
     public
 #endif
-    class MethodReflection
+    partial class MethodReflection
     {
         /// <summary>
         /// Convert a methodinfo from one generic type permutation to a different generic permutation. It is possible to change both the

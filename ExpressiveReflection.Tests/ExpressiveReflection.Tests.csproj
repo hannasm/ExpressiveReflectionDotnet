@@ -66,6 +66,9 @@
       <Name>ExpressiveReflection</Name>
     </ProjectReference>
   </ItemGroup>
+  <ItemGroup>
+    <Compile Include="MethodReflection.GetMethodExtTests.cs" />
+  </ItemGroup>
   <Choose>
     <When Condition="'$(VisualStudioVersion)' == '10.0' And '$(IsCodedUITest)' == 'True'">
       <ItemGroup>
