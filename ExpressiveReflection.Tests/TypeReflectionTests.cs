@@ -527,7 +527,12 @@ namespace ExpressiveReflection.Tests
         public void Test083()
         {
             var type = new TypeReflection();
-            var result = type.From(typeof(string).GetMethod("GetHashCode"));
+
+            var meths = typeof(string).GetMethods().Where(m=>m.Name == "GetHashCode");
+            foreach (var m in meths) {
+              Console.WriteLine("Method: {0}", m.ToString());
+            }
+            var result = type.From(typeof(string).GetMethod("GetHashCode", new Type[]{}));
 
             Assert.AreEqual(typeof(int), result);
         }
@@ -535,7 +540,7 @@ namespace ExpressiveReflection.Tests
         public void Test084()
         {
             var type = new TypeReflection();
-            var result = type.From(typeof(string).GetMethod("GetHashCode"));
+            var result = type.From(typeof(string).GetMethod("GetHashCode", new Type[]{}));
 
             Assert.AreEqual(typeof(int), result);
         }

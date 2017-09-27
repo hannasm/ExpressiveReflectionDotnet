@@ -1,0 +1,58 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <EnableDefaultCompileItems>false</EnableDefaultCompileItems>
+    <TargetFramework>netstandard2.0</TargetFramework>
+    <GenerateAssemblyConfigurationAttribute>false</GenerateAssemblyConfigurationAttribute>
+    <GenerateAssemblyCompanyAttribute>false</GenerateAssemblyCompanyAttribute>
+    <GenerateAssemblyProductAttribute>false</GenerateAssemblyProductAttribute>
+    <GenerateAssemblyCopyrightAttribute>false</GenerateAssemblyCopyrightAttribute>
+    <GenerateAssemblyDescriptionAttribute>false</GenerateAssemblyDescriptionAttribute>
+    <GenerateAssemblyFileVersionAttribute>false</GenerateAssemblyFileVersionAttribute>
+    <GenerateAssemblyInformationalVersionAttribute>false</GenerateAssemblyInformationalVersionAttribute>
+    <GenerateAssemblyProductAttribute>false</GenerateAssemblyProductAttribute>
+    <GenerateAssemblyTitleAttribute>false</GenerateAssemblyTitleAttribute>
+    <GenerateAssemblyVersionAttribute>false</GenerateAssemblyVersionAttribute>
+    <GenerateNeutralResourcesLanguageAttribute>false</GenerateNeutralResourcesLanguageAttribute>
+  </PropertyGroup>
+
+  <Target Name="GeneratePPs" BeforeTargets="Build">
+    <Message Text="... Generating PPs Begin" Importance="High" />
+    <Copy SourceFiles="..\ExpressiveReflection\APIEquivalenceComparison.cs" DestinationFiles="APIEquivalenceComparison.cs.pp"></Copy>
+    <Copy SourceFiles="..\ExpressiveReflection\CollectionReflection.cs" DestinationFiles="CollectionReflection.cs.pp" ></Copy>
+    <Copy SourceFiles="..\ExpressiveReflection\ConstructorReflection.cs" DestinationFiles="ConstructorReflection.cs.pp" ></Copy>
+    <Copy SourceFiles="..\ExpressiveReflection\InvalidExpressionException.cs" DestinationFiles="InvalidExpressionException.cs.pp" ></Copy>
+    <Copy SourceFiles="..\ExpressiveReflection\MemberReflection.cs" DestinationFiles="MemberReflection.cs.pp" ></Copy>
+    <Copy SourceFiles="..\ExpressiveReflection\MethodReflection.cs" DestinationFiles="MethodReflection.cs.pp" ></Copy>
+    <Copy SourceFiles="..\ExpressiveReflection\MethodReflection.GetMethodExt.cs" DestinationFiles="MethodReflection.GetMethodExt.cs.pp" ></Copy>
+    <Copy SourceFiles="..\ExpressiveReflection\Reflection.cs" DestinationFiles="Reflection.cs.pp" ></Copy>
+    <Copy SourceFiles="..\ExpressiveReflection\TypeReflection.cs" DestinationFiles="TypeReflection.cs.pp" ></Copy>
+    <Copy SourceFiles="..\ExpressiveReflection\Extensions\ExpressiveReflectionExtensions.cs" DestinationFiles="Extensions\ExpressiveReflectionExtensions.cs.pp" ></Copy>
+
+    <Message Text="... Generating PPs Complete" Importance="Low" />
+
+    <Message Text="... Generating Nuspec" Importance="High" />
+    <ReadLinesFromFile File="ExpressiveReflection.Sources.nuspec.header"><Output TaskParameter="Lines" ItemName="NuspecHeader" /></ReadLinesFromFile>
+    <ReadLinesFromFile File="ExpressiveReflection.Sources.nuspec.footer"><Output TaskParameter="Lines" ItemName="NuspecFooter" /></ReadLinesFromFile>
+    <ReadLinesFromFile File="../ExpressiveReflection.CommonNugetProperties.xml"><Output TaskParameter="Lines" ItemName="NuspecCommonProperties" /></ReadLinesFromFile>
+    <ReadLinesFromFile File="../ExpressiveReflection.VersionNumber.md"><Output TaskParameter="Lines" ItemName="CommonVersion" /></ReadLinesFromFile>
+    <ReadLinesFromFile File="../ExpressiveReflection.ReleaseNotes.md"><Output TaskParameter="Lines" ItemName="CommonReleaseNotes" /></ReadLinesFromFile>
+    <CreateProperty Value="&lt;version&gt;"><Output TaskParameter="Value" PropertyName="NuspecVersionPrefix" /></CreateProperty>
+    <CreateProperty Value="&lt;/version&gt;"><Output TaskParameter="Value" PropertyName="NuspecVersionSuffix" /></CreateProperty>
+    <CreateProperty Value="&lt;releaseNotes&gt;"><Output TaskParameter="Value" PropertyName="NuspecReleaseNotesPrefix" /></CreateProperty>
+    <CreateProperty Value="&lt;/releaseNotes&gt;"><Output TaskParameter="Value" PropertyName="NuspecReleaseNotesSuffix" /></CreateProperty>
+    <WriteLinesToFile File="ExpressiveReflection.Sources.nuspec" Lines="@(NuspecHeader)" Overwrite="true" Encoding="UTF-8"/>
+    <WriteLinesToFile File="ExpressiveReflection.Sources.nuspec" Lines="@(NuspecCommonProperties)" Overwrite="false" Encoding="UTF-8"/>
+    <WriteLinesToFile File="ExpressiveReflection.Sources.nuspec" Lines="$(NuspecVersionPrefix)" Overwrite="false" Encoding="UTF-8"/>
+    <WriteLinesToFile File="ExpressiveReflection.Sources.nuspec" Lines="@(CommonVersion)" Overwrite="false" Encoding="UTF-8"/>
+    <WriteLinesToFile File="ExpressiveReflection.Sources.nuspec" Lines="$(NuspecVersionSuffix)" Overwrite="false" Encoding="UTF-8"/>
+    <WriteLinesToFile File="ExpressiveReflection.Sources.nuspec" Lines="$(NuspecReleaseNotesPrefix)" Overwrite="false" Encoding="UTF-8"/>
+    <WriteLinesToFile File="ExpressiveReflection.Sources.nuspec" Lines="@(CommonReleaseNotes)" Overwrite="false" Encoding="UTF-8"/>
+    <WriteLinesToFile File="ExpressiveReflection.Sources.nuspec" Lines="$(NuspecReleaseNotesSuffix)" Overwrite="false" Encoding="UTF-8"/>
+    <WriteLinesToFile File="ExpressiveReflection.Sources.nuspec" Lines="@(NuspecFooter)" Overwrite="false" Encoding="UTF-8"/>
+    <Message Text="... Generating Nuspec Complete" Importance="High" />
+  </Target>
+
+  <PropertyGroup>
+    <NuspecFile>ExpressiveReflection.Sources.nuspec</NuspecFile>
+  </PropertyGroup>
+</Project>

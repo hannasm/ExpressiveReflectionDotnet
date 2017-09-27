@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Diagnostics;
 
 namespace ExpressiveReflection.Tests
 {
@@ -16,7 +17,7 @@ namespace ExpressiveReflection.Tests
             var method = new MethodReflection();
             var result = method.From(() => default(string).TrimEnd());
 
-            Assert.AreEqual(typeof(string).GetMethod("TrimEnd"), result);
+            Assert.AreEqual(typeof(string).GetMethod("TrimEnd", new Type[]{}), result);
         }
         [TestMethod]
         public void Test001Name()

@@ -1,0 +1,7 @@
+    <authors>hannasm</authors>
+    <owners>hannasm</owners>
+	<licenseUrl>https://github.com/hannasm/ExpressiveReflectionDotnet/blob/master/LICENSE</licenseUrl>
+    <projectUrl>https://github.com/hannasm/ExpressiveReflectionDotnet</projectUrl>
+    <requireLicenseAcceptance>false</requireLicenseAcceptance>
+    <description>Tools to simplify coding with the .NET reflection APIs.</description>
+    <copyright>Copyright 2015-2017</copyright>

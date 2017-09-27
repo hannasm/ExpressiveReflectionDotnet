@@ -1,7 +1,7 @@
 <?xml version="1.0"?>
 <package >
   <metadata>
-    <id>ExpressiveReflection</id>
+    <id>ExpressiveReflection.Sources</id>
     <version>1.4.0</version>
     <authors>hannasm</authors>
     <owners>hannasm</owners>
@@ -31,11 +31,18 @@
     <copyright>Copyright 2015-2017</copyright>
   </metadata>
   <files>
-    <file src="..\readme.md" target="content\README_ExpressiveReflection.md" />
-    <file src="..\LICENSE.md" target="content\LICENSE_ExpressiveReflection.md" />
-    <file src="bin\Release\*.dll" target="lib" />
-    <file src="bin\Release\*.pdb" target="lib" />
-    <file src="bin\Release\*.xml" target="lib" />
+    <file src="..\readme.md" target="content\lib\ExpressiveReflection.Sources.1.4.0" />
+    <file src="..\LICENSE.md" target="content\lib\ExpressiveReflection.Sources.1.4.0" />
+    <file src="APIEquivalenceComparison.cs.pp" target="content\lib\ExpressiveReflection.Sources.1.4.0" />
+    <file src="CollectionReflection.cs.pp" target="content\lib\ExpressiveReflection.Sources.1.4.0" />
+    <file src="ConstructorReflection.cs.pp" target="content\lib\ExpressiveReflection.Sources.1.4.0" />
+    <file src="InvalidExpressionException.cs.pp" target="content\lib\ExpressiveReflection.Sources.1.4.0" />
+    <file src="MemberReflection.cs.pp" target="content\lib\ExpressiveReflection.Sources.1.4.0" />
+    <file src="MethodReflection.cs.pp" target="content\lib\ExpressiveReflection.Sources.1.4.0" />
+    <file src="MethodReflection.GetMethodExt.cs.pp" target="content\lib\ExpressiveReflection.Sources.1.4.0" />
+    <file src="Reflection.cs.pp" target="content\lib\ExpressiveReflection.Sources.1.4.0" />
+    <file src="TypeReflection.cs.pp" target="content\lib\ExpressiveReflection.Sources.1.4.0" />
+    <file src="Extensions\ExpressiveReflectionExtensions.cs.pp" target="content\lib\ExpressiveReflection.Sources.1.4.0\Extensions" />
   </files>
 </package>
 <!-- vim: set expandtab ts=2 sw=2:  -->
