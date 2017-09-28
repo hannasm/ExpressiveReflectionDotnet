@@ -1,9 +1,7 @@
 * Update Nuget Package Link in README.md
 * Update source tag link in README.md
-* Update Changelog at bottom of REAMDE.md
-* Update Version Number in AssemblyInfo.cs
-* Update Version Number in Package.nuspec
-* update release notes in package.nuspec
-* run 'powershell GenerateNugetPackages.ps1' from a visual studio command prompt (nuget needs to be on the path too)
-* run 'powershell PublishNugetPackages.ps1' from a visual studio command prompt (nuget needs to be on the path and API key needs to be set)
-* create tag for release on github
+* Update Version Number in ExpressiveReflection.VersionNumber.md
+* update release notes in ExpressiveReflection.ReleaseNotes.md
+* create tag for release on github with name as version Number
+* 'dotnet pack -c Release' to generate the nuget PublishNugetPackages
+* 'dotnet nuget push <package.nupkg> -s  https://www.nuget.org/api/v2/package -k <api key here>' to push to nuget.org 
