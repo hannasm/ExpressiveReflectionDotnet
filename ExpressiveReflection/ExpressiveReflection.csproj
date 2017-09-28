@@ -1,14 +1,12 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
   <PropertyGroup>
     <DefineConstants>$(DefineConstants);EXPRESSIVE_REFLECTION_ASSEMBLY</DefineConstants>
-    <TargetFramework>netcoreapp2.0</TargetFramework>
+    <TargetFrameworks>netstandard2.0</TargetFrameworks>
   </PropertyGroup>
-
   <PropertyGroup>
     <!-- We do not use the auto-generated nuspec files feature, instead see build task below -->
     <NuspecFile>ExpressiveReflection.nuspec</NuspecFile>
   </PropertyGroup>
-    
   <PropertyGroup>
     <!-- We do use the auto-generated assembly info, but version number is pulled in from GetProjectProps build task below -->
     <AssemblyTitle>ExpressiveReflection</AssemblyTitle>
@@ -16,11 +14,13 @@
     <Company>Resonance Development</Company>
     <Description>Core utility library for performing reflection via Expressive (ExpressionTree) syntax</Description>
   </PropertyGroup>
-
   <!-- load version number and populate properties needed for generating assemblyInfo and nuspec -->
   <Target Name="GetProjectProps" BeforeTargets="GetAssemblyVersion">
+    <Message Text="... Compilation For Framework $(TargetFramework)" Importance="High" />
     <Message Text="... Generating Assembly Version" Importance="High" />
-    <ReadLinesFromFile File="../ExpressiveReflection.VersionNumber.md"><Output TaskParameter="Lines" ItemName="CommonVersion" /></ReadLinesFromFile>
+    <ReadLinesFromFile File="../ExpressiveReflection.VersionNumber.md">
+      <Output TaskParameter="Lines" ItemName="CommonVersion" />
+    </ReadLinesFromFile>
     <PropertyGroup>
       <Version>@(CommonVersion)</Version>
       <FileVersion>@(CommonVersion)</FileVersion>
@@ -28,33 +28,53 @@
     </PropertyGroup>
     <Message Text="... Generated Assembly Version $(Version)" Importance="High" />
   </Target>
-
   <Target Name="GeneratePPs" BeforeTargets="Build">
     <Message Text="... Generating Nuspec" Importance="High" />
-    <ReadLinesFromFile File="ExpressiveReflection.nuspec.header"><Output TaskParameter="Lines" ItemName="NuspecHeader" /></ReadLinesFromFile>
-    <ReadLinesFromFile File="ExpressiveReflection.nuspec.footer"><Output TaskParameter="Lines" ItemName="NuspecFooter" /></ReadLinesFromFile>
-    <ReadLinesFromFile File="../ExpressiveReflection.CommonNugetProperties.xml"><Output TaskParameter="Lines" ItemName="NuspecCommonProperties" /></ReadLinesFromFile>
-    <ReadLinesFromFile File="../ExpressiveReflection.ReleaseNotes.md"><Output TaskParameter="Lines" ItemName="CommonReleaseNotes" /></ReadLinesFromFile>
-    <CreateProperty Value="&lt;version&gt;"><Output TaskParameter="Value" PropertyName="NuspecVersionPrefix" /></CreateProperty>
-    <CreateProperty Value="&lt;/version&gt;"><Output TaskParameter="Value" PropertyName="NuspecVersionSuffix" /></CreateProperty>
-    <CreateProperty Value="&lt;releaseNotes&gt;"><Output TaskParameter="Value" PropertyName="NuspecReleaseNotesPrefix" /></CreateProperty>
-    <CreateProperty Value="&lt;/releaseNotes&gt;"><Output TaskParameter="Value" PropertyName="NuspecReleaseNotesSuffix" /></CreateProperty>
-    <WriteLinesToFile File="ExpressiveReflection.nuspec" Lines="@(NuspecHeader)" Overwrite="true" Encoding="UTF-8"/>
-    <WriteLinesToFile File="ExpressiveReflection.nuspec" Lines="@(NuspecCommonProperties)" Overwrite="false" Encoding="UTF-8"/>
-    <WriteLinesToFile File="ExpressiveReflection.nuspec" Lines="$(NuspecVersionPrefix)" Overwrite="false" Encoding="UTF-8"/>
-    <WriteLinesToFile File="ExpressiveReflection.nuspec" Lines="@(CommonVersion)" Overwrite="false" Encoding="UTF-8"/>
-    <WriteLinesToFile File="ExpressiveReflection.nuspec" Lines="$(NuspecVersionSuffix)" Overwrite="false" Encoding="UTF-8"/>
-    <WriteLinesToFile File="ExpressiveReflection.nuspec" Lines="$(NuspecReleaseNotesPrefix)" Overwrite="false" Encoding="UTF-8"/>
-    <WriteLinesToFile File="ExpressiveReflection.nuspec" Lines="@(CommonReleaseNotes)" Overwrite="false" Encoding="UTF-8"/>
-    <WriteLinesToFile File="ExpressiveReflection.nuspec" Lines="$(NuspecReleaseNotesSuffix)" Overwrite="false" Encoding="UTF-8"/>
-    <WriteLinesToFile File="ExpressiveReflection.nuspec" Lines="@(NuspecFooter)" Overwrite="false" Encoding="UTF-8"/>
+    <ReadLinesFromFile File="ExpressiveReflection.nuspec.header">
+      <Output TaskParameter="Lines" ItemName="NuspecHeader" />
+    </ReadLinesFromFile>
+    <ReadLinesFromFile File="ExpressiveReflection.nuspec.footer">
+      <Output TaskParameter="Lines" ItemName="NuspecFooter" />
+    </ReadLinesFromFile>
+    <ReadLinesFromFile File="../ExpressiveReflection.VersionNumber.md">
+      <Output TaskParameter="Lines" ItemName="CommonVersion" />
+    </ReadLinesFromFile>
+    <ReadLinesFromFile File="../ExpressiveReflection.CommonNugetProperties.xml">
+      <Output TaskParameter="Lines" ItemName="NuspecCommonProperties" />
+    </ReadLinesFromFile>
+    <ReadLinesFromFile File="../ExpressiveReflection.ReleaseNotes.md">
+      <Output TaskParameter="Lines" ItemName="CommonReleaseNotes" />
+    </ReadLinesFromFile>
+    <PropertyGroup>
+      <CommonReleaseNotesToEncode>@(CommonReleaseNotes->'%(Identity)', '%0a')</CommonReleaseNotesToEncode>
+      <CommonReleaseNotesEncoded>
+        $(CommonReleaseNotesToEncode.Replace('&amp;', '&amp;amp;').Replace('&lt;', '&amp;lt;').Replace('&gt;', '&amp;gt;'))
+      </CommonReleaseNotesEncoded>
+    </PropertyGroup>
+    <CreateProperty Value="&lt;version&gt;">
+      <Output TaskParameter="Value" PropertyName="NuspecVersionPrefix" />
+    </CreateProperty>
+    <CreateProperty Value="&lt;/version&gt;">
+      <Output TaskParameter="Value" PropertyName="NuspecVersionSuffix" />
+    </CreateProperty>
+    <CreateProperty Value="&lt;releaseNotes&gt;">
+      <Output TaskParameter="Value" PropertyName="NuspecReleaseNotesPrefix" />
+    </CreateProperty>
+    <CreateProperty Value="&lt;/releaseNotes&gt;">
+      <Output TaskParameter="Value" PropertyName="NuspecReleaseNotesSuffix" />
+    </CreateProperty>
+    <WriteLinesToFile File="ExpressiveReflection.nuspec" Lines="@(NuspecHeader)" Overwrite="true" Encoding="UTF-8" />
+    <WriteLinesToFile File="ExpressiveReflection.nuspec" Lines="@(NuspecCommonProperties)" Overwrite="false" Encoding="UTF-8" />
+    <WriteLinesToFile File="ExpressiveReflection.nuspec" Lines="$(NuspecVersionPrefix)" Overwrite="false" Encoding="UTF-8" />
+    <WriteLinesToFile File="ExpressiveReflection.nuspec" Lines="@(CommonVersion)" Overwrite="false" Encoding="UTF-8" />
+    <WriteLinesToFile File="ExpressiveReflection.nuspec" Lines="$(NuspecVersionSuffix)" Overwrite="false" Encoding="UTF-8" />
+    <WriteLinesToFile File="ExpressiveReflection.nuspec" Lines="$(NuspecReleaseNotesPrefix)" Overwrite="false" Encoding="UTF-8" />
+    <WriteLinesToFile File="ExpressiveReflection.nuspec" Lines="$(CommonReleaseNotesEncoded)" Overwrite="false" Encoding="UTF-8" />
+    <WriteLinesToFile File="ExpressiveReflection.nuspec" Lines="$(NuspecReleaseNotesSuffix)" Overwrite="false" Encoding="UTF-8" />
+    <WriteLinesToFile File="ExpressiveReflection.nuspec" Lines="@(NuspecFooter)" Overwrite="false" Encoding="UTF-8" />
     <Message Text="... Generated Nuspec" Importance="High" />
-
   </Target>
-
   <ItemGroup>
     <None Include="ExpressiveReflection.nuspec" />
-    <None Include="GenerateNugetPackages.ps1" />
-    <None Include="PublishNugetPackages.ps1" />
   </ItemGroup>
 </Project>

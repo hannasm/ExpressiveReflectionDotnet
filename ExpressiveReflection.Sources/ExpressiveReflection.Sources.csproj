@@ -13,6 +13,7 @@
     <GenerateAssemblyTitleAttribute>false</GenerateAssemblyTitleAttribute>
     <GenerateAssemblyVersionAttribute>false</GenerateAssemblyVersionAttribute>
     <GenerateNeutralResourcesLanguageAttribute>false</GenerateNeutralResourcesLanguageAttribute>
+    <NoWarn>2008</NoWarn>
   </PropertyGroup>
 
   <Target Name="GeneratePPs" BeforeTargets="Build">
@@ -36,6 +37,13 @@
     <ReadLinesFromFile File="../ExpressiveReflection.CommonNugetProperties.xml"><Output TaskParameter="Lines" ItemName="NuspecCommonProperties" /></ReadLinesFromFile>
     <ReadLinesFromFile File="../ExpressiveReflection.VersionNumber.md"><Output TaskParameter="Lines" ItemName="CommonVersion" /></ReadLinesFromFile>
     <ReadLinesFromFile File="../ExpressiveReflection.ReleaseNotes.md"><Output TaskParameter="Lines" ItemName="CommonReleaseNotes" /></ReadLinesFromFile>
+<PropertyGroup>
+     <CommonReleaseNotesToEncode>@(CommonReleaseNotes->'%(Identity)', '%0a')</CommonReleaseNotesToEncode>
+      <CommonReleaseNotesEncoded>
+        $(CommonReleaseNotesToEncode.Replace('&amp;', '&amp;amp;').Replace('&lt;', '&amp;lt;').Replace('&gt;', '&amp;gt;'))
+      </CommonReleaseNotesEncoded>
+    </PropertyGroup>
+ 
     <CreateProperty Value="&lt;version&gt;"><Output TaskParameter="Value" PropertyName="NuspecVersionPrefix" /></CreateProperty>
     <CreateProperty Value="&lt;/version&gt;"><Output TaskParameter="Value" PropertyName="NuspecVersionSuffix" /></CreateProperty>
     <CreateProperty Value="&lt;releaseNotes&gt;"><Output TaskParameter="Value" PropertyName="NuspecReleaseNotesPrefix" /></CreateProperty>
@@ -46,7 +54,7 @@
     <WriteLinesToFile File="ExpressiveReflection.Sources.nuspec" Lines="@(CommonVersion)" Overwrite="false" Encoding="UTF-8"/>
     <WriteLinesToFile File="ExpressiveReflection.Sources.nuspec" Lines="$(NuspecVersionSuffix)" Overwrite="false" Encoding="UTF-8"/>
     <WriteLinesToFile File="ExpressiveReflection.Sources.nuspec" Lines="$(NuspecReleaseNotesPrefix)" Overwrite="false" Encoding="UTF-8"/>
-    <WriteLinesToFile File="ExpressiveReflection.Sources.nuspec" Lines="@(CommonReleaseNotes)" Overwrite="false" Encoding="UTF-8"/>
+    <WriteLinesToFile File="ExpressiveReflection.Sources.nuspec" Lines="@(CommonReleaseNotesEncoded)" Overwrite="false" Encoding="UTF-8"/>
     <WriteLinesToFile File="ExpressiveReflection.Sources.nuspec" Lines="$(NuspecReleaseNotesSuffix)" Overwrite="false" Encoding="UTF-8"/>
     <WriteLinesToFile File="ExpressiveReflection.Sources.nuspec" Lines="@(NuspecFooter)" Overwrite="false" Encoding="UTF-8"/>
     <Message Text="... Generating Nuspec Complete" Importance="High" />
