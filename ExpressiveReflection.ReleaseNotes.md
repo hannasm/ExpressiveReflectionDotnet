@@ -1,3 +1,4 @@
+      * 2.0.1 - Experimented with getting the source only distribution working, it turns out the source transformation feature and nuget content in general just isn't available with dotnet core, and so the source distribution is gone until further notice.
       * 2.0.0 - Updated library, releases are now targeting .NET core 2
       * 1.4.1 - Fix for issue with calls to Reflection.IsNullAssignable() and extension method <Type>.IsNullAssignable() calling the wrong function in TypeReflection.
       * 1.4.0 - Hit some need for looking up a generic method, and only have a Type[] available to use to do it. Found a solution on stackoverflow that works, and doesn't require intense mental effort to use. I would like something cleaner down the road but it will do for now: GetMethodExt()

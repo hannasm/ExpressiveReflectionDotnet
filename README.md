@@ -1,11 +1,12 @@
 # Versioning
-This is version 2.0.0 of the expressive reflection library.
+This is version 2.0.1 of the expressive reflection library.
 
-This package is available from nuget at: https://www.nuget.org/packages/ExpressiveReflection/2.0.0
+This package is available from nuget at: https://www.nuget.org/packages/ExpressiveReflection/2.0.1
 
-This package is also available from nuget as an embeddable sources package at: https://www.nuget.org/packages/ExpressiveReflection.Sources/2.0.0
+The source for this release is available on github at: https://github.com/hannasm/ExpressiveReflectionDotNet/releases/tag/2.0.1
 
-The source for this release is available on github at: https://github.com/hannasm/ExpressiveReflectionDotNet/releases/tag/2.0.0
+## Source Packages
+The dotnet core releases to date do not support source code transformations, which was an essential feature for the source only distribution of this project. The source only distributions has been discontinued until this feature makes it back into the dotnet core featureset.
 
 # ExpressiveReflectionDotnet
 This is a .NET library for simplifying reflection / metadata programming and making 

@@ -10,23 +10,29 @@
 <description>Tools to simplify coding with the .NET reflection APIs.</description>
 <copyright>Copyright 2015-2017</copyright>
 <version>
-2.0.0
+2.0.1
 </version>
 <releaseNotes>
 </releaseNotes>
+<minClientVersion>3.3</minClientVersion>
+<contentFiles>
+<files include="contentFiles/cs/any/**.cs" buildAction="Compile" />
+<files include="contentFiles/any/any/README_ExpressiveReflection.md" buildAction="None" />
+<files include="contentFiles/any/any/LICENSE_ExpressiveReflection.md" buildAction="None" copyToOutput="true" />
+</contentFiles>
 </metadata>
 <files>
-<file src="../readme.md" target="content/README_ExpressiveReflection.md" />
-<file src="../LICENSE.md" target="content/LICENSE_ExpressiveReflection.md" />
-<file src="APIEquivalenceComparison.cs.pp" target="content/lib/ExpressiveReflection.Sources" />
-<file src="CollectionReflection.cs.pp" target="content/lib/ExpressiveReflection.Sources" />
-<file src="ConstructorReflection.cs.pp" target="content/lib/ExpressiveReflection.Sources" />
-<file src="InvalidExpressionException.cs.pp" target="content/lib/ExpressiveReflection.Sources" />
-<file src="MemberReflection.cs.pp" target="content/lib/ExpressiveReflection.Sources" />
-<file src="MethodReflection.cs.pp" target="content/lib/ExpressiveReflection.Sources" />
-<file src="MethodReflection.GetMethodExt.cs.pp" target="content/lib/ExpressiveReflection.Sources" />
-<file src="Reflection.cs.pp" target="content/lib/ExpressiveReflection.Sources" />
-<file src="TypeReflection.cs.pp" target="content/lib/ExpressiveReflection.Sources" />
-<file src="Extensions/ExpressiveReflectionExtensions.cs.pp" target="content/lib/ExpressiveReflection.Sources/Extensions" />
+<file src="../readme.md" target="contentFiles/any/any/README_ExpressiveReflection.md" />
+<file src="../LICENSE.md" target="contentFiles/any/any/LICENSE_ExpressiveReflection.md" />
+<file src="APIEquivalenceComparison.cs.pp" target="contentFiles/cs/any" />
+<file src="CollectionReflection.cs.pp" target="contentFiles/cs/any" />
+<file src="ConstructorReflection.cs.pp" target="contentFiles/cs/any" />
+<file src="InvalidExpressionException.cs.pp" target="contentFiles/cs/any" />
+<file src="MemberReflection.cs.pp" target="contentFiles/cs/any" />
+<file src="MethodReflection.cs.pp" target="contentFiles/cs/any" />
+<file src="MethodReflection.GetMethodExt.cs.pp" target="contentFiles/cs/any" />
+<file src="Reflection.cs.pp" target="contentFiles/cs/any" />
+<file src="TypeReflection.cs.pp" target="contentFiles/cs/any" />
+<file src="Extensions/ExpressiveReflectionExtensions.cs.pp" target="contentFiles/cs/any/Extensions" />
 </files>
 </package>
